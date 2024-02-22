@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { InstallDialog } from "@/components/install-dialog";
 import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { User } from "@/types/user";
@@ -215,10 +216,11 @@ export default function Account() {
             As alterações podem demorar até <strong>15 minutos</strong> para
             serem aplicadas
           </p>
+          <p className="text-balance w-full">
+            Além disso, elas só serão aplicadas em novas abas do Twitter
+          </p>
         </div>
-        {/* <Button variant="ghost" size="sm" className="gap-2 mt-16">
-          Como instalar <HelpCircle size="1rem" />
-        </Button> */}
+        <InstallDialog className="mt-8" />
         <Button
           variant="ghost"
           size="sm"

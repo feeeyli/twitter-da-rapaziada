@@ -1,5 +1,6 @@
 "use client";
 
+import { InstallDialog } from "@/components/install-dialog";
 import { Button } from "@/components/ui/button";
 import { SignIn, useSession } from "@clerk/nextjs";
 import { ArrowRight, Loader2 } from "lucide-react";
@@ -30,9 +31,7 @@ export default function HomePage() {
           </Link>
         </Button>
       )}
-      {/* <Button variant="ghost" size="sm" className="gap-2">
-        Como instalar <HelpCircle size="1rem" />
-      </Button> */}
+      <InstallDialog />
     </main>
   );
 }
