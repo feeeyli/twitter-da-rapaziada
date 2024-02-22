@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import { NextResponse } from "next/server";
 
 async function getUser(username: string) {
   const { data: user } = await supabase
@@ -20,19 +21,19 @@ export async function GET(req: Request) {
 
   const username = searchParams.get("username");
 
-  if (!username) return Response.json({ data: null });
+  if (!username) return NextResponse.json({ data: null });
 
   const data = await getUser(username);
 
-  return Response.json({ data });
+  return NextResponse.json({ data });
 }
 
 export async function POST(req: Request) {
   const body = await req.json();
 
-  if (!body) return Response.json({ data: null });
+  if (!body) return NextResponse.json({ data: null });
 
   const data = await setUser(body as { username: string; verified: boolean });
 
-  return Response.json({ data });
+  return NextResponse.json({ data });
 }

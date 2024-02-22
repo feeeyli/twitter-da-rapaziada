@@ -1,6 +1,6 @@
 import { supabase } from "@/lib/supabase";
-import { NextApiResponse } from "next";
 import { unstable_cache } from "next/cache";
+import { NextResponse } from "next/server";
 
 const getAccounts = unstable_cache(
   async function (usernames: string[]) {
@@ -32,12 +32,12 @@ const getAccounts = unstable_cache(
   }
 );
 
-export async function GET(req: Request, res: NextApiResponse) {
+export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
 
   const usernames = searchParams.getAll("username");
 
   const data = await getAccounts(usernames);
 
-  return Response.json({ data });
+  return NextResponse.json({ data });
 }
