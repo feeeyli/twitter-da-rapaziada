@@ -16,7 +16,9 @@
 
 ![Autorizar acesso ao Twitter](./install-images/image-3.png)
 
-### Instalando o script no PC 🖥️
+4. Você vai ser redirecionado para configurar seu perfil. Escolha quais badges quer ter ao lado do nome e clique em "*Salvar*". *Obs.: Eu recomendo escolher só até 3 badges para seu nome não ser cortado em telas menores.*
+
+<h3 id="instalando-o-script-no-pc">Instalando o script no PC 🖥️</h3>
 
 1. Acesse a [Chrome Web Store](https://chromewebstore.google.com/) e siga para o proximo passo, ou acesse a [pagina da extensão](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) e pule para o passo 4.
 
@@ -36,7 +38,7 @@
 
 ![Instalar script](./install-images/image-7.png)
 
-### Instalando o script no Celular 📱
+<h3 id="instalando-o-script-no-celular">Instalando o script no Celular 📱</h3>
 
 1. Procure na google play o Kiwi Browser
 
