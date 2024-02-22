@@ -75,15 +75,23 @@ export default function Account() {
       });
 
       if (typeof data.data[0] === "undefined") {
-        const { data } = await axios.post<{ data: User[] }>("/api/user", {
-          username: user.username,
-          verified: true,
-          "cellbit-logo": true,
-          blood: true,
-          knowledge: true,
-          death: true,
-          energy: true,
-        });
+        const { data } = await axios.post<{ data: User[] }>(
+          "/api/user",
+          {
+            username: user.username,
+            verified: true,
+            "cellbit-logo": true,
+            blood: true,
+            knowledge: true,
+            death: true,
+            energy: true,
+          },
+          {
+            headers: {
+              token: process.env.NEXT_PUBLIC_API_SECRET!,
+            },
+          }
+        );
 
         return data.data[0];
       }
@@ -109,15 +117,23 @@ export default function Account() {
     mutationFn: async () => {
       if (!isSignedIn || !user) return;
 
-      await axios.post("/api/user", {
-        username: user.username,
-        verified: selected.includes("verified"),
-        "cellbit-logo": selected.includes("cellbit-logo"),
-        blood: selected.includes("blood"),
-        knowledge: selected.includes("knowledge"),
-        death: selected.includes("death"),
-        energy: selected.includes("energy"),
-      });
+      await axios.post(
+        "/api/user",
+        {
+          username: user.username,
+          verified: selected.includes("verified"),
+          "cellbit-logo": selected.includes("cellbit-logo"),
+          blood: selected.includes("blood"),
+          knowledge: selected.includes("knowledge"),
+          death: selected.includes("death"),
+          energy: selected.includes("energy"),
+        },
+        {
+          headers: {
+            token: process.env.NEXT_PUBLIC_API_SECRET!,
+          },
+        }
+      );
 
       queryClient.setQueryData(
         ["user-data", "signed-in:true", "user:" + user.username],

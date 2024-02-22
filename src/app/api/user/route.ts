@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
 async function getUser(username: string) {
@@ -30,6 +31,12 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   const body = await req.json();
+  const headersList = headers()
+  const token = headersList.get('token')
+
+  if (token !== process.env.NEXT_PUBLIC_API_SECRET) return NextResponse.json({ data: null }, {
+    status: 401,
+  });
 
   if (!body) return NextResponse.json({ data: null });
 
