@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Twitter da Rapaziada
 // @match       https://twitter.com/*
-// @version     1.9
+// @version     2.0
 // @author      feyli
 // @require     https://cdn.jsdelivr.net/npm/@violentmonkey/dom@1
 // @require     https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
@@ -163,8 +163,8 @@ function run() {
         try {
           return rapaziada.some(
             (r) =>
-              /@(\w+)·/i.exec(item.textContent)[1].toLocaleLowerCase() ===
-              r.username
+              (/@(\w+)·/i.exec(item.textContent) ??
+                item.textContent.split("@"))[1] === r.username
           );
         } catch (err) {
           return false;
@@ -173,8 +173,8 @@ function run() {
       .map((item) => {
         const user = rapaziada.find(
           (r) =>
-            /@(\w+)·/i.exec(item.textContent)[1].toLocaleLowerCase() ===
-            r.username
+            (/@(\w+)·/i.exec(item.textContent) ??
+              item.textContent.split("@"))[1] === r.username
         );
 
         return {
@@ -196,7 +196,7 @@ function run() {
         $(item.el)
           .find("> div:not(:contains(@))")
           .append(
-            `<div data-testid="tdr-icons" style="display:inline;margin-left:2px;">${item.badges
+            `<div data-testid="tdr-icons" style="display:inline-flex;margin-left:2px;">${item.badges
               .map((badge) => {
                 if (badge.name !== "cellbit-logo")
                   return iconImg({
@@ -251,7 +251,7 @@ function run() {
             ".css-1rynq56.r-bcqeeo.r-qvutc0.r-37j5jr.r-1vr29t4.r-1awozwy.r-6koalj.r-1udh08x > span.css-1qaijid.r-bcqeeo.r-qvutc0.r-poiln3"
           )
           .append(
-            `<div data-testid="tdr-icons" style="display:inline;margin-left:2px;">${item.badges
+            `<div data-testid="tdr-icons" style="display:inline-flex;margin-left:2px;">${item.badges
               .map((badge) => {
                 if (badge.name !== "cellbit-logo")
                   return iconImg({
@@ -311,7 +311,7 @@ function run() {
             ".css-1rynq56.r-bcqeeo.r-qvutc0.r-37j5jr.r-a023e6.r-rjixqe.r-b88u0q.r-1awozwy.r-6koalj.r-1udh08x.r-3s2u2q > span.css-1qaijid.r-dnmrzs.r-1udh08x.r-3s2u2q.r-bcqeeo.r-qvutc0.r-poiln3"
           )
           .append(
-            `<div data-testid="tdr-icons" style="display:inline;margin-left:2px;">${item.badges
+            `<div data-testid="tdr-icons" style="display:inline-flex;margin-left:2px;">${item.badges
               .map((badge) => {
                 if (badge.name !== "cellbit-logo")
                   return iconImg({
