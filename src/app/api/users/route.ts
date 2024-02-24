@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import { removeUnusedBadges } from "@/lib/utils";
 import { unstable_cache } from "next/cache";
 import { NextResponse } from "next/server";
 
@@ -13,7 +14,7 @@ const getAccounts = unstable_cache(
           "verified.eq.true,cellbit-logo.eq.true,blood.eq.true,knowledge.eq.true,death.eq.true,energy.eq.true"
         );
 
-      return users;
+      return removeUnusedBadges(users);
     }
 
     const { data: users } = await supabase
@@ -24,7 +25,7 @@ const getAccounts = unstable_cache(
         "verified.eq.true,cellbit-logo.eq.true,blood.eq.true,knowledge.eq.true,death.eq.true,energy.eq.true"
       );
 
-    return users;
+    return removeUnusedBadges(users);
   },
   [],
   {
