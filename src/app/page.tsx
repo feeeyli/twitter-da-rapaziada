@@ -2,7 +2,7 @@
 
 import { InstallDialog } from "@/components/install-dialog";
 import { Button } from "@/components/ui/button";
-import { SignIn, useSession } from "@clerk/nextjs";
+import { useSession } from "@clerk/nextjs";
 import { ArrowRight, Loader2 } from "lucide-react";
 import Link from "next/link";
 
@@ -23,7 +23,10 @@ export default function HomePage() {
       {typeof isSignedIn === "undefined" && (
         <Loader2 className="animate-spin" size="1rem" />
       )}
-      {isSignedIn === false && <SignIn />}
+      {isSignedIn === false && (
+        <p className="w-full text-center">Em manutenção!!</p>
+      )}
+      {/* {isSignedIn === false && <SignIn />} */}
       {isSignedIn && (
         <Button variant="outline" className="w-full gap-2" asChild>
           <Link href="/conta">
