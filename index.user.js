@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Twitter da Rapaziada
 // @match       https://twitter.com/*
-// @version     2.0
+// @version     2.1
 // @author      feyli
 // @require     https://cdn.jsdelivr.net/npm/@violentmonkey/dom@1
 // @require     https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
@@ -164,7 +164,8 @@ function run() {
           return rapaziada.some(
             (r) =>
               (/@(\w+)·/i.exec(item.textContent) ??
-                item.textContent.split("@"))[1] === r.username
+                item.textContent.split("@"))[1].toLocaleLowerCase() ===
+              r.username
           );
         } catch (err) {
           return false;
@@ -174,7 +175,7 @@ function run() {
         const user = rapaziada.find(
           (r) =>
             (/@(\w+)·/i.exec(item.textContent) ??
-              item.textContent.split("@"))[1] === r.username
+              item.textContent.split("@"))[1].toLocaleLowerCase() === r.username
         );
 
         return {
