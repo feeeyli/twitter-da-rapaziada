@@ -1,13 +1,12 @@
-"use client";
-
 import { InstallDialog } from "@/components/install-dialog";
 import { Button } from "@/components/ui/button";
-import { useSession } from "@clerk/nextjs";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { validateRequest } from "@/lib/auth";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-export default function HomePage() {
-  const { isSignedIn } = useSession();
+export default async function HomePage() {
+  const { session } = await validateRequest();
+  const isSignedIn = session !== null;
 
   return (
     <main className="flex flex-col items-center gap-6 w-[90%] max-w-md">
@@ -20,13 +19,19 @@ export default function HomePage() {
           className="size-8"
         />
       </h1>
-      {typeof isSignedIn === "undefined" && (
-        <Loader2 className="animate-spin" size="1rem" />
-      )}
       {isSignedIn === false && (
-        <p className="w-full text-center">Em manutenção!!</p>
+        <Button variant="outline" className="w-full gap-2" asChild>
+          <Link href="/login">
+            Entrar com Twitter
+            <svg viewBox="0 0 24 24" className="size-5">
+              <path
+                fill="currentColor"
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+              ></path>
+            </svg>
+          </Link>
+        </Button>
       )}
-      {/* {isSignedIn === false && <SignIn />} */}
       {isSignedIn && (
         <Button variant="outline" className="w-full gap-2" asChild>
           <Link href="/conta">
