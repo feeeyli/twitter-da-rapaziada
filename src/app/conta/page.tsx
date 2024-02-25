@@ -3,7 +3,7 @@
 import { InstallDialog } from "@/components/install-dialog";
 import { Button } from "@/components/ui/button";
 import { lucia, validateRequest } from "@/lib/auth";
-import { Loader2, LogOut } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { ActionResult } from "next/dist/server/app-render/types";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -39,7 +39,9 @@ export default async function Account() {
       </main>
     );
 
-  return <Loader2 size="1rem" className="animate-spin" />;
+  redirect("/");
+
+  // return <Loader2 size="1rem" className="animate-spin" />;
 }
 
 async function logout(): Promise<ActionResult> {
