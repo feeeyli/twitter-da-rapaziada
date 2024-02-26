@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Twitter da Rapaziada
 // @match       https://twitter.com/*
-// @version     2.3
+// @version     2.4
 // @author      feyli
 // @require     https://cdn.jsdelivr.net/npm/@violentmonkey/dom@1
 // @require     https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
@@ -252,7 +252,7 @@ function run() {
             ".css-1rynq56.r-bcqeeo.r-qvutc0.r-37j5jr.r-1vr29t4.r-1awozwy.r-6koalj.r-1udh08x > span.css-1qaijid.r-bcqeeo.r-qvutc0.r-poiln3"
           )
           .append(
-            `<div data-testid="tdr-icons" style="display:inline-flex;margin-left:2px;vertical-align:middle;">${item.badges
+            `<div data-testid="tdr-icons" style="display:inline-flex;margin-left:2px;vertical-align:-20%;">${item.badges
               .map((badge) => {
                 if (badge.name !== "cellbit-logo")
                   return iconImg({
